@@ -1,6 +1,13 @@
 name: Go
 
-on: [push]
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 env:
   TEMP_PATH: /home/runner/work/app/temp
   BUILD_PATH: /home/runner/go/src/github.com/namespace/app
@@ -22,7 +29,7 @@ jobs:
       id: go
 
     - name: Checking out code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     - name: Setup build paths
       run: |
