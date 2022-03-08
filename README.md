@@ -3,6 +3,7 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/nicholashoule/go-ginrest?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/nicholashoule/go-ginrest?color=000000&style=flat-square)
 [![Go](https://github.com/nicholashoule/go-ginrest/actions/workflows/golang.yml/badge.svg?branch=main)](https://github.com/nicholashoule/go-ginrest/actions/workflows/golang.yml)
+[![Run on Repl.it](https://repl.it/badge/github/nicholashoule/go-ginrest)](https://repl.it/github/nicholashoule/go-ginrest)
 
 # go-ginrest
 
