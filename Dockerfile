@@ -7,7 +7,7 @@
 # multi-stage, builder
 FROM golang:1.17 AS builder
 
-ENV GO111MODULE=on \
+ENV GOFLAGS=-mod=mod \
     CGO_ENABLED=0 \
     GOOS=linux \
     GOARCH=amd64
@@ -16,12 +16,8 @@ WORKDIR /src
 COPY . .
 
 RUN go build \
-  -ldflags "-s -w -extldflags 'static'" \
-  -installsuffix cgo \
-  -tags netgo \
-  -mod vendor \
-  -o /bin/ginrest \
-  .
+  -ldflags "-s -w" \
+  -o /bin/ginrest .
 
 # final
 FROM alpine:latest
