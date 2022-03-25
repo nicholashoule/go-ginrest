@@ -38,12 +38,11 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-		tMD5 := md5.Sum([]byte(text))
-		tSHA1 := sha1.Sum([]byte(text))
-		tSHA256 := sha256.Sum256([]byte(text))
-		tSHA512 := sha512.Sum512([]byte(text))
+		tMD5 := md5.Sum([]byte(msg.Text))
+		tSHA1 := sha1.Sum([]byte(msg.Text))
+		tSHA256 := sha256.Sum256([]byte(msg.Text))
+		tSHA512 := sha512.Sum512([]byte(msg.Text))
 
-                msg.Text = text
 		msg.HashTypeMD5 = hex.EncodeToString(tMD5[:])
 		msg.HashTypeSHA1 = hex.EncodeToString(tSHA1[:])
 		msg.HashTypeSHA256 = hex.EncodeToString(tSHA256[:])
@@ -64,9 +63,8 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tMD5 := md5.Sum([]byte(text))
+                tMD5 := md5.Sum([]byte(msg.Text))
 
-                msg.Text = text 
 		msg.HashTypeMD5 = hex.EncodeToString(tMD5[:])
 		c.JSON(http.StatusOK, gin.H{"hash (md5)": msg.HashTypeMD5})
 	})
@@ -84,9 +82,8 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA1 := sha1.Sum([]byte(text))
+                tSHA1 := sha1.Sum([]byte(msg.Text))
 
-                msg.Text = text
 		msg.HashTypeSHA1 = hex.EncodeToString(tSHA1[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha1)": msg.HashTypeSHA1})
 	})
@@ -104,9 +101,8 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA256 := sha256.Sum256([]byte(text))
+                tSHA256 := sha256.Sum256([]byte(msg.Text))
 
-                msg.Text = text
 		msg.HashTypeSHA256 = hex.EncodeToString(tSHA256[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha256)": msg.HashTypeSHA256})
 	})
@@ -124,9 +120,8 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA512 := sha512.Sum512([]byte(text))
+                tSHA512 := sha512.Sum512([]byte(msg.Text))
 
-                msg.Text = text
 		msg.HashTypeSHA512 = hex.EncodeToString(tSHA512[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha256)": msg.HashTypeSHA512})
 	})
