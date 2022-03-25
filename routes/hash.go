@@ -31,8 +31,9 @@ func addHash(rg *gin.RouterGroup) {
 	//   -H 'content-type: application/json' \
 	//   -d '{ "text": "testing" }'
 	path.POST("/", func(c *gin.Context) {
-		text := c.Params.ByName("text")
 		msg := &Hash{}
+                msg.Text = text
+
 		tMD5 := md5.Sum([]byte(text))
 		tSHA1 := sha1.Sum([]byte(text))
 		tSHA256 := sha256.Sum256([]byte(text))
@@ -43,7 +44,6 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-		msg.Text = text
 		msg.HashTypeMD5 = hex.EncodeToString(tMD5[:])
 		msg.HashTypeSHA1 = hex.EncodeToString(tSHA1[:])
 		msg.HashTypeSHA256 = hex.EncodeToString(tSHA256[:])
@@ -57,8 +57,8 @@ func addHash(rg *gin.RouterGroup) {
 	//   -H 'content-type: application/json' \
 	//   -d '{ "text": "testing" }'
 	path.POST("/md5", func(c *gin.Context) {
-		text, _ := c.GetPostForm("text")
 		msg, tMD5 := &Hash{}, md5.Sum([]byte(text))
+                msg.Text = text
 
 		if err := c.ShouldBindJSON(&msg); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -75,8 +75,8 @@ func addHash(rg *gin.RouterGroup) {
 	//   -H 'content-type: application/json' \
 	//   -d '{ "text": "testing" }'
 	path.POST("/sha1", func(c *gin.Context) {
-		text, _ := c.GetPostForm("text")
 		msg, tSHA1 := &Hash{}, sha1.Sum([]byte(text))
+                msg.Text = text
 
 		if err := c.ShouldBindJSON(&msg); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -93,8 +93,8 @@ func addHash(rg *gin.RouterGroup) {
 	//   -H 'content-type: application/json' \
 	//   -d '{ "text": "testing" }'
 	path.POST("/sha256", func(c *gin.Context) {
-		text, _ := c.GetPostForm("text")
 		msg, tSHA256 := &Hash{}, sha256.Sum256([]byte(text))
+                msg.Text = text
 
 		if err := c.ShouldBindJSON(&msg); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -111,8 +111,8 @@ func addHash(rg *gin.RouterGroup) {
 	//   -H 'content-type: application/json' \
 	//   -d '{ "text": "testing" }'
 	path.POST("/sha512", func(c *gin.Context) {
-		text, _ := c.GetPostForm("text")
 		msg, tSHA512 := &Hash{}, sha512.Sum512([]byte(text))
+                msg.Text = text
 
 		if err := c.ShouldBindJSON(&msg); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
