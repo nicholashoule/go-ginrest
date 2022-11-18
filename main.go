@@ -7,12 +7,15 @@ import (
 	"github.com/nicholashoule/go-ginrest/routes"
 )
 
+// Variables
 var version = "Development"
 
+// main ...
 func main() {
 	// Version and build information
 	fmt.Println("Version:\t", version)
 	build.Run()
-	// Our server will live in routes
+
+	// Call routes.Run
 	routes.Run()
 }

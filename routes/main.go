@@ -10,11 +10,12 @@ import (
 	"github.com/nicholashoule/go-ginrest/crypto"
 )
 
+// Variables
 var (
 	r = gin.Default()
 )
 
-// ConfigRuntime
+// ConfigRuntime ...
 func configRuntime() {
 	// Disable Console Color, you don't need console color when writing the logs to file.
 	//gin.DisableConsoleColor()
@@ -30,7 +31,7 @@ func configRuntime() {
 	r.ForwardedByClientIP = true
 }
 
-// getRoutes
+// getRoutes ...
 // creates our routes for our entire application. This way every
 // group of routes can be defined in their own files.
 func getRoutes() {
@@ -52,7 +53,8 @@ func getRoutes() {
 	addHash(v2)       // hash
 }
 
-// Run will configure, and start the server
+// Run ...
+// Configure, and start the server
 func Run() {
 	// Configure
 	crypto.Run()

@@ -2,11 +2,13 @@ package build
 
 import "fmt"
 
+// Exported
 var (
 	Time    string
 	GitHash string
 )
 
+// Run ...
 func Run() {
 	// build information
 	fmt.Printf("build.Time:\t%s", Time)

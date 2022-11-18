@@ -1,0 +1,48 @@
+# General
+# CR LF: Carriage return + line feed, Unicode characters 000D + 000A
+# LF: Line feed, Unicode character 000A
+# NEL: Next line, Unicode character 0085
+# LS: Line separator, Unicode character 2028
+# PS: Paragraph separator, Unicode character 2029
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# General
+*.txt   text
+LICENSE text
+OWNERS  text
+*.DOC   diff=astextplain
+*.docx  diff=astextplain
+*.DOCX  diff=astextplain
+
+# Git
+*.gitattributes eol=lf linguist-language=gitattributes
+*.gitignore     eol=lf
+*.gitkeep       eol=lf
+*.gitmodules    eol=lf
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
+.gitmodules    export-ignore
+
+# configs
+.editorconfig eol=lf
+
+# markdown
+*.md text diff=markdown eol=lf
+
+# yaml
+*.yaml eol=lf
+*.yml  eol=lf
+
+# json
+*.js   eol=lf
+*.jsx  eol=lf
+*.json eol=lf
+
+# homebrew
+Brewfile eol=lf
+
+# golang
+*.go diff=golang eol=lf
