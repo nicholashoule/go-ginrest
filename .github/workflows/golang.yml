@@ -13,8 +13,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, macOS-latest]
-        goV: [1.16, 1.17]
+        os: [ubuntu-20.04, macOS-latest]
+        goV: [1.19, 1.17]
 
     steps:
     - name: Set up Go ${{ matrix.goV }}
