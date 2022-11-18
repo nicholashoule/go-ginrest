@@ -12,6 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Hash struct
 type Hash struct {
 	Text           string `json:"text" binding:"required" validate:"nonzero"`
 	HashTypeMD5    string `json:"hash (md5)"`
@@ -20,7 +21,11 @@ type Hash struct {
 	HashTypeSHA512 string `json:"hash (sha512)"`
 }
 
-// Group
+/*
+Router groups
+*/
+
+// addHash ...
 // Path: /hash
 func addHash(rg *gin.RouterGroup) {
 	path := rg.Group("/hash")
@@ -63,7 +68,7 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tMD5 := md5.Sum([]byte(msg.Text))
+        tMD5 := md5.Sum([]byte(msg.Text))
 
 		msg.HashTypeMD5 = hex.EncodeToString(tMD5[:])
 		c.JSON(http.StatusOK, gin.H{"hash (md5)": msg.HashTypeMD5})
@@ -82,7 +87,7 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA1 := sha1.Sum([]byte(msg.Text))
+        tSHA1 := sha1.Sum([]byte(msg.Text))
 
 		msg.HashTypeSHA1 = hex.EncodeToString(tSHA1[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha1)": msg.HashTypeSHA1})
@@ -101,7 +106,7 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA256 := sha256.Sum256([]byte(msg.Text))
+        tSHA256 := sha256.Sum256([]byte(msg.Text))
 
 		msg.HashTypeSHA256 = hex.EncodeToString(tSHA256[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha256)": msg.HashTypeSHA256})
@@ -120,7 +125,7 @@ func addHash(rg *gin.RouterGroup) {
 			return
 		}
 
-                tSHA512 := sha512.Sum512([]byte(msg.Text))
+        tSHA512 := sha512.Sum512([]byte(msg.Text))
 
 		msg.HashTypeSHA512 = hex.EncodeToString(tSHA512[:])
 		c.JSON(http.StatusOK, gin.H{"hash (sha256)": msg.HashTypeSHA512})

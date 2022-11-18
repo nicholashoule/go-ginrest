@@ -7,20 +7,27 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Default struct
 type Default struct {
 	IP      string `json:"ip"`
 	Message string `json:"message"`
 }
 
+// DateTime struct
 type DateTime struct {
 	DateTime time.Time `json:"datetime"`
 }
 
+// Msg struct
 type Msg struct {
 	Message string `json:"message"`
 }
 
-// Group
+/*
+Router groups
+*/
+
+// addDefault ...
 // Path: /
 func addDefault(rg *gin.RouterGroup) {
 	rp := rg.Group("/")
@@ -33,7 +40,7 @@ func addDefault(rg *gin.RouterGroup) {
 	})
 }
 
-// Group
+// addPingRoutes ...
 // Path: /ping
 func addPingRoutes(rg *gin.RouterGroup) {
 	rp := rg.Group("/ping")
@@ -45,7 +52,7 @@ func addPingRoutes(rg *gin.RouterGroup) {
 	})
 }
 
-// Group
+// addGetDate ...
 // Path: /date
 func addGetDate(rg *gin.RouterGroup) {
 	rp := rg.Group("/date")
