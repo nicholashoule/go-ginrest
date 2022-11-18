@@ -10,8 +10,3 @@ repos:
       - id: trailing-whitespace
       - id: mixed-line-ending
       - id: check-yaml
-  - repo: https://github.com/golangci/golangci-lint
-    rev: v1.50.1
-    hooks:
-      - id: golangci-lint
-        types: [go]

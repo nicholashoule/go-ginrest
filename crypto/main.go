@@ -11,7 +11,7 @@ import (
 	"encoding/pem"
 
 	"fmt"
-	"io/ioutil"
+	"os"
 	"math/big"
 	"net"
 	"time"
@@ -127,13 +127,13 @@ func certsetup() (serverTLSConf *tls.Config, clientTLSConf *tls.Config, err erro
 
 	// Development tls/certs, these are auto generated for development/testing
 	// Private key
-	ioutil.WriteFile("tls/server.key", certPrivKeyPEM.Bytes(), 0640)
+	os.WriteFile("tls/server.key", certPrivKeyPEM.Bytes(), 0640)
 	fmt.Println("Development/testing: Creating private key, saved to server.key")
 	// Public cert
-	ioutil.WriteFile("tls/server.crt", certPEM.Bytes(), 0640)
+	os.WriteFile("tls/server.crt", certPEM.Bytes(), 0640)
 	fmt.Println("Development/testing: Creating public certificate, saved to server.crt")
 	// Cert PEM
-	ioutil.WriteFile("tls/server.pem", certPEM.Bytes(), 0640)
+	os.WriteFile("tls/server.pem", certPEM.Bytes(), 0640)
 	fmt.Printf("Development/testing: Creating PEM, saved to server.pem\n\n")
 
 	return
