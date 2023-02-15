@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/dchest/validator v0.0.0-20191217151620-8e45250f2371
 	github.com/gin-gonic/gin v1.8.2
-	github.com/thinkerou/favicon v0.1.0
+	github.com/thinkerou/favicon v0.2.0
 )
 
 require (
