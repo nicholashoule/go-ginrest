@@ -57,7 +57,7 @@ func configRuntime() {
 
 	// SetTrustedProxies set a list of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs)
 	r.SetTrustedProxies([]string{"localhost", "127.0.0.1", "::1"})
-	r.Use(favicon.New(pwd + "favicon.ico"))
+	r.Use(favicon.New(pwd + "/favicon.ico"))
 	r.HandleMethodNotAllowed = true
 	r.ForwardedByClientIP = true
 }

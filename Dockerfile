@@ -1,7 +1,7 @@
 # Dockerfile 
 # for building/running Go (Golang) services
 #
-# docker build -t go-ginrest:1.20 nicholashoule:go-ginrest
+# docker build -t go-ginrest:1.20 .
 # docker run go-ginrest:1.20
 #
 # https://docs.docker.com/engine/reference/run/
