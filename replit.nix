@@ -1,6 +1,6 @@
 { pkgs }: {
     deps = [
-        pkgs.go_1_17
+        pkgs.go_1_20
         pkgs.gopls
     ];
 }
