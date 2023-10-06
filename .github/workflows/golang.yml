@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04, macOS-latest]
+        os: [ubuntu-20.04, macOS-latest]
         goV: [1.20, 1.19]
 
     steps:
