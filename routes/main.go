@@ -2,11 +2,14 @@ package routes
 
 import (
 	"fmt"
+	"net"
+	"os"
 	"runtime"
 
 	"github.com/gin-gonic/gin"
 	"github.com/thinkerou/favicon"
 
+	"github.com/nicholashoule/go-ginrest/build"
 	"github.com/nicholashoule/go-ginrest/crypto"
 )
 
@@ -22,11 +25,39 @@ func configRuntime() {
 	// Sets the number of operating system threads.
 	nuCPU := runtime.NumCPU()
 	runtime.GOMAXPROCS(nuCPU)
+
+	// Get some OS information
+	// Hostname
+	host, _ := os.Hostname()
+	// IPv4 address
+	var ipv4 net.IP
+	addrs, _ := net.LookupIP(host)
+	for _, addr := range addrs {
+		if ipv4 = addr.To4(); ipv4 != nil {
+			ipv4 = addr.To4()
+		}
+	}
+	// Golang working directory
+	pwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	// Display information
+	fmt.Printf("Hostname: %s\n", host)
+	fmt.Printf("Path: %s\n", pwd)
+	fmt.Printf("IPv4: %s\n", ipv4)
 	fmt.Printf("Running with %d CPUs\n", nuCPU)
+
+	// Development
+	if build.Version == "Development" {
+		fmt.Printf("\nTry loading: https://%s:5000/v2/date/ \n", ipv4)
+	}
 
 	// SetTrustedProxies set a list of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs)
 	r.SetTrustedProxies([]string{"localhost", "127.0.0.1", "::1"})
-	r.Use(favicon.New("./favicon.ico"))
+	r.Use(favicon.New(pwd + "favicon.ico"))
 	r.HandleMethodNotAllowed = true
 	r.ForwardedByClientIP = true
 }
