@@ -3,9 +3,9 @@ name: Go
 # Controls when the workflow will run
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -14,17 +14,17 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, macOS-latest]
-        goV: [1.19, 1.17]
+        goV: [1.20.9, 1.19]
 
     steps:
-    - name: Set up Go ${{ matrix.goV }}
-      uses: actions/setup-go@v4
-      with:
-        go-version: ${{ matrix.goV }}
+      - name: Set up Go ${{ matrix.goV }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.goV }}
 
-    - name: Check out repo 
-      uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-    - name: Build
-      run: |
-        go build -ldflags="-s -w" -v .
+      - name: Build
+        run: |
+          go build -ldflags="-s -w" -v .

@@ -6,11 +6,16 @@ import "fmt"
 var (
 	Time    string
 	GitHash string
+	Version string
 )
 
 // Run ...
 func Run() {
+	// Version and build information
+	Version = "Development"
+
 	// build information
-	fmt.Printf("build.Time:\t%s", Time)
-	fmt.Printf("\nbuild.GitHash:\t%s\n\n", GitHash)
+	fmt.Printf("\nVersion:\t%s", Version)
+	fmt.Printf("\nbuild.Time:\t%s", Time)
+	fmt.Printf("\nbuild.GitHash:\t%s\n", GitHash)
 }
