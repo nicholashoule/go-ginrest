@@ -19,6 +19,7 @@ var (
 	Pwd  string
 	Host string
 	Ipv4 net.IP
+	Url  string
 )
 
 // ConfigRuntime ...
@@ -53,17 +54,16 @@ func configRuntime() {
 	Host = host
 	Ipv4 = ipv4
 	fmt.Println("[Environment Information]")
-	fmt.Printf("Hostname: %s\n", host)
-	fmt.Printf("Path: %s\n", pwd)
-	fmt.Printf("IPv4: %s\n", ipv4)
-	fmt.Printf("Running with %d CPUs\n\n", numCPU)
 
 	// Development
 	if build.Environment == "Development" {
-		// SSL/TLS
-		crypto.Run()
-		fmt.Printf("Try loading: https://%s:5000/v2/date/\n", ipv4)
+		Url = "http://" + ipv4.String() + ":5000/"
 	}
+	fmt.Printf("Hostname: %s\n", host)
+	fmt.Printf("Path: %s\n", pwd)
+	fmt.Printf("IPv4: %s\n", ipv4)
+	fmt.Printf("Running with %d CPUs\n", numCPU)
+	fmt.Printf("URL: %s\n\n", Url)
 
 	// SetTrustedProxies set a list of network origins (IPv4 addresses, IPv4 CIDRs, IPv6 addresses or IPv6 CIDRs)
 	r.SetTrustedProxies([]string{"localhost", "127.0.0.1", "::1"})
@@ -98,7 +98,11 @@ func getRoutes() {
 // Listen and serve HTTPS requests
 func startTLS() {
 	// Configure
+	// SSL/TLS
+	crypto.Run()
+	Url = "https://" + Ipv4.String() + ":5000/"
 	// Listen and serve
+	fmt.Printf("URL: %s\n", Url)
 	r.RunTLS(":5000", "tls/server.crt", "tls/server.key")
 }
 
@@ -110,6 +114,6 @@ func Run() {
 	getRoutes()
 
 	// Listen and serve
-	// r.Run(":5000")
-	startTLS()
+	r.Run(":5000")
+	// startTLS()
 }
