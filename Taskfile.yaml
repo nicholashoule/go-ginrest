@@ -4,7 +4,8 @@ version: "3"
 
 vars:
   PROJECT: "go-ginrest"
-  VERSION: "v1.0.0"
+  ENVIRONMENT: "Development"
+  VERSION: "1.0.0"
 
   GIT_COMMIT:
     #sh: if [ -d ".git" ]; then $(git rev-parse --verify HEAD | cut -b 1-8); else echo -n 'none'; fi
@@ -17,23 +18,44 @@ tasks:
   # task run
   run:
     desc: Run the {{.PROJECT}} application
+    env:
+      Project: "{{.PROJECT}}"
+      Environment: "{{.ENVIRONMENT}}"
+      Version: "{{.VERSION}}"
+      GitHash: "{{.GIT_COMMIT}}"
+      DateTime: "{{.DATE_UTC}}"
     cmds:
-      - GOFLAGS=-mod=mod go run .
+      - echo "[Run]"
+      - echo "----------------------------------------"
+      - echo "Project, $Project"
+      - echo "Environment, $Environment"
+      - echo "Version, $Version"
+      - echo "GitHash, $GitHash"
+      - echo "Time, $DateTime"
+      - echo "----------------------------------------"
+      - GOFLAGS=-mod=mod go run -ldflags "-X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'" .
+    silent: true
 
   # task build
   build:
     desc: Build the {{.PROJECT}} application
     cmds:
-      - GOFLAGS=-mod=mod go build -o 'bin/{{.PROJECT}}' -ldflags="-X 'main.version={{.VERSION}}' -X '{{.PROJECT}}/build.GitHash={{.GIT_COMMIT}}' -X '{{.PROJECT}}/build.Time={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod go build -o 'bin/{{.PROJECT}}' -ldflags "-X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
+    requires:
+      vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]
 
   # task build-darwin
   build-darwin:
     desc: Build the {{.PROJECT}} application for darwin/amd64
     cmds:
-      - GOFLAGS=-mod=mod GOOS=darwin GOARCH=amd64 go build -o 'bin/darwin/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.version={{.VERSION}}' -X '{{.PROJECT}}/build.GitHash={{.GIT_COMMIT}}' -X '{{.PROJECT}}/build.Time={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod GOOS=darwin GOARCH=amd64 go build -o 'bin/darwin/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
+    requires:
+      vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]
 
   # task build-linux
   build-linux:
     desc: Build the {{.PROJECT}} application for linux/amd64
     cmds:
-      - GOFLAGS=-mod=mod GOOS=linux GOARCH=amd64 go build -o 'bin/linux/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.version={{.VERSION}}' -X '{{.PROJECT}}/build.GitHash={{.GIT_COMMIT}}' -X '{{.PROJECT}}/build.Time={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod GOOS=linux GOARCH=amd64 go build -o 'bin/linux/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
+    requires:
+      vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]

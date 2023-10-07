@@ -2,14 +2,21 @@ package main
 
 import (
 	"github.com/nicholashoule/go-ginrest/build"
-	"github.com/nicholashoule/go-ginrest/routes"
+)
+
+// variables
+var (
+	environment string
+	version     string
+	githash     string
+	datetime    string
 )
 
 // main ...
 func main() {
 	// Build information
-	build.Run()
+	build.Info(environment, version, githash, datetime)
 
 	// Call routes.Run
-	routes.Run()
+	Run()
 }

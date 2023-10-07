@@ -19,11 +19,8 @@ import (
 	//"github.com/gin-gonic/autotls"
 )
 
-// Run ...
-func Run() {
-	certsetup()
-}
-
+// certsetup ...
+// For development and testing with SSL/TLS
 func certsetup() (serverTLSConf *tls.Config, clientTLSConf *tls.Config, err error) {
 	// set up our CA certificate
 	ca := &x509.Certificate{
@@ -137,4 +134,9 @@ func certsetup() (serverTLSConf *tls.Config, clientTLSConf *tls.Config, err erro
 	fmt.Printf("Development/testing: Creating PEM, saved to server.pem\n\n")
 
 	return
+}
+
+// Run ...
+func Run() {
+	certsetup()
 }
