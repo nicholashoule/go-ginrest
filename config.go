@@ -58,6 +58,7 @@ func configRuntime() {
 	if build.Environment == "Development" {
 		Url = "http://" + ipv4.String() + ":5000/"
 	}
+
 	fmt.Printf("Hostname: %s\n", host)
 	fmt.Printf("Path: %s\n", pwd)
 	fmt.Printf("IPv4: %s\n", ipv4)
