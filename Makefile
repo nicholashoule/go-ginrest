@@ -3,7 +3,7 @@ run: main
 	./$<
 
 main: *.go go.mod
-	go build -o $@ .
+	task run
 
 .PHONY: all
 all: main
