@@ -6,7 +6,6 @@
 ![GitHub](https://img.shields.io/github/license/nicholashoule/go-ginrest?color=000000&style=flat-square)
 [![Go](https://github.com/nicholashoule/go-ginrest/actions/workflows/golang.yml/badge.svg?branch=main)](https://github.com/nicholashoule/go-ginrest/actions/workflows/golang.yml)
 
-
 # go-ginrest
 
 ## Go (Golang) Example: Gin RESTful API
@@ -42,4 +41,11 @@ brew install go-task/tap/go-task
 ```
 task run
 task build
+```
+
+### Docker
+
+```
+docker build -t go-ginrest:1.20 .
+docker run go-ginrest:1.20
 ```

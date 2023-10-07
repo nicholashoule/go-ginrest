@@ -11,6 +11,7 @@ pattern = "**/*.go"
 start = "gopls"
 
 [nix]
+# https://search.nixos.org/packages
 channel = "stable-23_05"
 
 [gitHubImport]
