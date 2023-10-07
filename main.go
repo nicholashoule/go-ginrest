@@ -4,18 +4,18 @@ import (
 	"github.com/nicholashoule/go-ginrest/build"
 )
 
-// Exported build variables
+// variables
 var (
-	Environment string
-	Version     string
-	GitHash     string
-	DateTime    string
+	environment string
+	version     string
+	githash     string
+	datetime    string
 )
 
 // main ...
 func main() {
 	// Build information
-	build.Info(Environment, Version, GitHash, DateTime)
+	build.Info(environment, version, githash, datetime)
 
 	// Call routes.Run
 	Run()

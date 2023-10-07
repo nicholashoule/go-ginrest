@@ -33,14 +33,14 @@ tasks:
       - echo "GitHash, $GitHash"
       - echo "Time, $DateTime"
       - echo "----------------------------------------"
-      - GOFLAGS=-mod=mod go run -ldflags "-X 'main.Environment={{.ENVIRONMENT}}' -X 'main.Version={{.VERSION}}' -X 'main.GitHash={{.GIT_COMMIT}}' -X 'main.DateTime={{.DATE_UTC}}'" .
+      - GOFLAGS=-mod=mod go run -ldflags "-X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'" .
     silent: true
 
   # task build
   build:
     desc: Build the {{.PROJECT}} application
     cmds:
-      - GOFLAGS=-mod=mod go build -o 'bin/{{.PROJECT}}' -ldflags "-X 'main.Environment={{.ENVIRONMENT}}' -X 'main.Version={{.VERSION}}' -X 'main.GitHash={{.GIT_COMMIT}}' -X 'main.DateTime={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod go build -o 'bin/{{.PROJECT}}' -ldflags "-X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
     requires:
       vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]
 
@@ -48,7 +48,7 @@ tasks:
   build-darwin:
     desc: Build the {{.PROJECT}} application for darwin/amd64
     cmds:
-      - GOFLAGS=-mod=mod GOOS=darwin GOARCH=amd64 go build -o 'bin/darwin/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.Environment={{.ENVIRONMENT}}' -X 'main.Version={{.VERSION}}' -X 'main.GitHash={{.GIT_COMMIT}}' -X 'main.DateTime={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod GOOS=darwin GOARCH=amd64 go build -o 'bin/darwin/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
     requires:
       vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]
 
@@ -56,6 +56,6 @@ tasks:
   build-linux:
     desc: Build the {{.PROJECT}} application for linux/amd64
     cmds:
-      - GOFLAGS=-mod=mod GOOS=linux GOARCH=amd64 go build -o 'bin/linux/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.Environment={{.ENVIRONMENT}}' -X 'main.Version={{.VERSION}}' -X 'main.GitHash={{.GIT_COMMIT}}' -X 'main.DateTime={{.DATE_UTC}}'"
+      - GOFLAGS=-mod=mod GOOS=linux GOARCH=amd64 go build -o 'bin/linux/amd64/{{.PROJECT}}' -ldflags="-s -w -X 'main.environment={{.ENVIRONMENT}}' -X 'main.version={{.VERSION}}' -X 'main.githash={{.GIT_COMMIT}}' -X 'main.datetime={{.DATE_UTC}}'"
     requires:
       vars: [PROJECT, VERSION, GIT_COMMIT, DATE_UTC]
