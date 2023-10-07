@@ -128,7 +128,7 @@ func certsetup() (serverTLSConf *tls.Config, clientTLSConf *tls.Config, err erro
 	// Development tls/certs, these are auto generated for development/testing
 	// Private key
 	os.WriteFile("tls/server.key", certPrivKeyPEM.Bytes(), 0640)
-	fmt.Println("Development/testing: Creating private key, saved to server.key")
+	fmt.Println("\nDevelopment/testing: Creating private key, saved to server.key")
 	// Public cert
 	os.WriteFile("tls/server.crt", certPEM.Bytes(), 0640)
 	fmt.Println("Development/testing: Creating public certificate, saved to server.crt")
