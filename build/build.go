@@ -2,7 +2,7 @@ package build
 
 import "fmt"
 
-// Exported
+// Exported build variables
 var (
 	Time        string
 	GitHash     string
@@ -10,8 +10,8 @@ var (
 	Environment string
 )
 
-// Run ...
-func Run() {
+// Info ...
+func Info() {
 	// Version and build information
 	Version = "1.0.0"
 	Environment = "Development"
