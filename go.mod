@@ -1,6 +1,6 @@
 module github.com/nicholashoule/go-ginrest
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/dchest/validator v0.0.0-20191217151620-8e45250f2371
